@@ -1,0 +1,6 @@
+load csv with headers from "file:///airport.csv" as airports create (a1:airport{airportID:airports.Airport_ID, name:airports.Name, city:airports.City, country:airports.Country})
+
+load csv with headers from "file:///route.csv" as routes match
+(a:airport{airportID:routes.Source_ID})
+match (b:airport {airportID:outes.Destination_ID})
+merge (a)-[r:route]->(b)
